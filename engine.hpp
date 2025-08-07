@@ -5,10 +5,8 @@
 #ifndef ENGINE_HPP
 #define ENGINE_HPP
 
-enum Result 
-{
-    Error,
-    Success
+enum Error {
+    GeneralError
 };
 
 enum Action 
@@ -25,7 +23,7 @@ class Engine
         Engine();
         ~Engine();
         
-        Result run_round();
+        Error run_round();
 
         
     
