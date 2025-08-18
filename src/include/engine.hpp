@@ -17,6 +17,12 @@ class Map {
 };
 
 enum Error {
+    No_Error,
+    ActionEntineError,
+    TriggerEngineError,
+    MapError,
+    VisibilityEngineError,
+    GameStateError,
     GeneralError
 };
 
@@ -30,9 +36,10 @@ class Actor {
         int get_distance_to_actor(Actor actor);
         Error attack(Actor actor);
         Error create_attack(int att, int dam);
-
     
+
     private:
+        
         coordinates location;
         int hp;
         int att;

@@ -4,7 +4,14 @@
 #include <vector>
 #include "include/game_state.hpp"
 
-class game_state
-{
+class game_state {
 
+};
+
+class Actor {
+    public:
+        Actor();
+        ~Actor();
+
+        
 };
