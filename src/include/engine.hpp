@@ -11,37 +11,6 @@ struct coordinates {
     float z;
 };
 
-enum Action_Type {
-    Move,
-    Standard,
-    Swift,
-    Immediate,
-    Free,
-};
-
-class Action {
-
-    public:
-        Action();
-        ~Action();
-        
-        Trigger* run_action(Action* self, Action* other_actor);
-    
-    private:
-       std::string stat_name;
-       Error set_stat(int* stat);
-       int stat;
-       
-       std::string check_name;
-       Error set_check(int* stat);
-       int check;
-
-};
-
-class Trigger {
-
-};
-
 class Map {
     int x;
     int y;
