@@ -1,14 +1,6 @@
-#include <vector>
-#include "include/event_engine.hpp"
-#include "include/engine.hpp"
+#include "include/event_engine.h"
+#include "include/engine.h"
 
-enum Interaction {
-    MeleeAttack,
-    RangedAttack,
-    Spell_Damage,
-    Spell_Mind,
-    Defend
-};
 
 // struct Interaction{
 //     Interaction_Type type;
@@ -19,11 +11,6 @@ enum Interaction {
 //     std::string check_dice;
 // };
 
-struct Action {
-    Interaction interaction;
-    Actor origin_actor;
-    Actor destination_actor;   
-};
 
 Trigger Action_Engine (Action action) {
     
