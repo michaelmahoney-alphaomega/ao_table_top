@@ -13,3 +13,13 @@ struct Action {
     Actor origin_actor;
     Actor destination_actor;   
 };
+
+class Event_Engine {
+    public:
+        Event_Engine();
+        ~Event_Engine();
+    
+    private:
+        
+}
+

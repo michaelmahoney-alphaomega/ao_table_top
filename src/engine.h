@@ -1,19 +1,21 @@
 #include "include/character.h"
 #include "include/action.h"
+#include "event_engine.h"
 
 #include <iostream>
 #include <cmath>
 #include <string>
 #include <vector>
 
+using namespace std;
 
 class Engine 
 {
     public:
         Engine(
-            std::vector<Character> character_manifest, 
-            std::vector<Actor> actor_manifest,
-            std::vector<Action> action_manifest
+            vector<Character> character_manifest, 
+            vector<Actor> actor_manifest,
+            vector<Action> action_manifest
         ) {
 
         };
@@ -28,15 +30,23 @@ class Engine
         int round;
         int character_count;
         Character* whos_turn;
-        std::vector<Character> characters;
+        vector<Character> characters;
+        vector<Actor> actors;
         Map map; 
 
+        EventEngine Event_Engine();
+        Game_State GameState Game_State();
+
+        void create_game_state(vector<Character> character_manifest, vector<Actor> actor_manifest);
+        void create_event_engine(vector<Character> character_manifest, vector<Actor> actor_manifest);
+
         void create_map(int height, int width);
-        void initialize_turn_order(std::vector<Character> character_manifest);
-        void create_map_state(std::vector<Character> character_manifest, std::vector<Actor> actor_manifest);
-        void create_character_state(std::vector<Character> character_manifest, std::vector<Actor> actor_manifest);
-        void create_event_state(std::vector<Character> character_manifest, std::vector<Actor> actor_manifest);
-        void create_event_engine(std::vector<Character> character_manifest, std::vector<Actor> actor_manifest);
+        void create_map_state(vector<Character> character_manifest, vector<Actor> actor_manifest);
+        
+        void create_actor_state(vector<Actor> actor_manifest);
+        void create_character_state(vector<Character> character_manifest, vector<Actor> actor_manifest);
+
+        void initialize_turn_order(vector<Character> character_manifest);
 
 };
 struct coordinates {
@@ -58,46 +68,4 @@ enum Error {
     VisibilityEngineError,
     GameStateError,
     GeneralError
-};
-
-class Actor {
-    public:
-        Actor();
-        ~Actor();
-        
-        Error move(coordinates coord);
-        coordinates get_location();
-        int get_distance_to_actor(Actor actor);
-        Error attack(Actor actor);
-        Error create_attack(int att, int dam);
-    
-
-    private:
-        
-        coordinates location;
-        int hp;
-        int att;
-        int dam;
-};
-
-class Character : public Actor {
-    public:
-        Character();
-        ~Character();
-
-    private:
-};
-
-class Engine 
-{
-    public:
-        Engine();
-        ~Engine();
-        
-        Error run_round();
-    
-    private:
-        int round;
-        Character* whos_turn;
-        Character* characters[];
 };
