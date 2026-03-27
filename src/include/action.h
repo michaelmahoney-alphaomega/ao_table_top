@@ -1,82 +1,129 @@
 #include <vector>
-struct Action_Payload {
-    int acrobatics,
-    int strength": 10,
-    int dexterity": 10,
-    int constitution": 10,
-    int intelligence": 10,
-    int "wisdom": 10,
-    int "charisma": 10,
-    int "health_points": 10,
-    int "armor_class": 10,
-    int "armor_class_touch": 10,
-    int "armor_class_flat_footed": 10,
-    int "initiative": 10,
-    int "combat_maneuver_bonus": 10,
-    int "combat_maneuver_defense": 10,
-    int "base_attack_bonus": 10,
-    int "speed": 10,
-    int "spell_resistance": 10,
-    int "fortitude": 10,
-    int "reflex": 10,
-    int "will": 10,
-    int "appraise": 10,
-    int "bluff": 10,
-    int "climb": 10,
-    int "craft_1": 10,
-    int "diplomacy": 10,
-    int "disable_device": 10,
-    int "disguise": 10,
-    int "escape_artist": 10,
-    int "fly": 10,
-    int "handle_animal": 10,
-    int "heal": 10,
-    int "intimidate": 10,
-    int "knowledge_arcana": 10,
-    int "knowledge_dungeoneering": 10,
-    int "knowledge_engineering": 10,
-    int "knowledge_geography": 10,
-    int "knowledge_history": 10,
-    int "knowledge_local": 10,
-    int "knowledge_nature": 10,
-    int "knowledge_nobility": 10,
-    int "knowledge_planes": 10,
-    int "knowledge_religion": 10,
-    int "linguistics": 10,
-    int "perception": 10,
-    int "perform_1": 10,
-    int "profession_1": 10,
-    int "ride": 10,
-    int "sense_motive": 10,
-    int "sleight_of_hand": 10,
-    int "spellcraft": 10,
-    int "stealth": 10,
-    int "survival": 10,
-    int "swim": 10,
-    int "use_magic_device": 10
+
+using namespace std;
+
     
-}
+enum Action_Component_Stat{
+    acrobatics,
+    strength,
+    dexterity,
+    constitution,
+    intelligence,
+    wisdom,
+    charisma,
+    health_points,
+    armor_class,
+    armor_class_touch,
+    armor_class_flat_footed,
+    initiative,
+    combat_maneuver_bonus,
+    combat_maneuver_defense,
+    base_attack_bonus,
+    speed,
+    spell_resistance,
+    fortitude,
+    reflex,
+    will,
+    appraise,
+    bluff,
+    climb,
+    craft_1,
+    diplomacy,
+    disable_device,
+    disguise,
+    escape_artist,
+    fly,
+    handle_animal,
+    heal,
+    intimidate,
+    knowledge_arcana,
+    knowledge_dungeoneering,
+    knowledge_engineering,
+    knowledge_geography,
+    knowledge_history,
+    knowledge_local,
+    knowledge_nature,
+    knowledge_nobility,
+    knowledge_planes,
+    knowledge_religion,
+    linguistics,
+    perception,
+    perform_1,
+    profession_1,
+    ride,
+    sense_motive,
+    sleight_of_hand,
+    spellcraft,
+    stealth,
+    survival,
+    swim,
+    use_magic_device,
+};
+
 enum Target_Type {
    Charcter,
    Actor,
    Map, 
 };
 
+enum Action_Component_Source{
+    None,
+    Melee,
+    Ranged,
+    Spell,
+    Supernatural_Ability,
+    Extraordinary_Ability
+};
+
+enum Action_Component_Condition {
+    None,
+    Stunned,
+    Dazed
+};
+
+enum Action_Component_Effect {
+    None,
+    Damage,
+    Penalty,
+    Drain,
+    Bonus
+};
+
+enum Action_Component_Type {
+    Untyped,
+    Moral,
+    Enchantment,
+    Fear,
+    Divine,
+};
+
+struct Action_Component {
+    Action_Component_Source source;
+    vector<Action_Component_Stat> stats;
+    Action_Component_Condition condition;
+    Action_Component_Effect effect;
+    Action_Component_Type action_type;
+};
+
 enum Action_Type {
-    MeleeAttack,
-    RangedAttack,
+    Full_Round_Action,
+    Standard_Action,
+    Move_Action,
+    Swift_Action,
+    Imediate_Action,
+    Free_Action
+};
 
-
-}
-
-class Action
-{
+class Action {
     public:
-        Action();
+        Action(
+            Action_Type action_type, 
+            Action_Component action_component,
+        );
         ~Action();
-    
-    private:
-        vector<Target_Type> allowable_targets;
 
-        
+    private:
+        Action_Type _action_typ;
+        vector<Action_Component> _components;
+        Target; 
 };
