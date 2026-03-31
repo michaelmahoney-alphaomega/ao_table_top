@@ -2,6 +2,11 @@
 
 using namespace std;
 
+enum Action_Valid_Target_Type {
+   Charcter,
+   Actor,
+   Map, 
+};
     
 enum Action_Component_Stat{
     acrobatics,
@@ -60,12 +65,6 @@ enum Action_Component_Stat{
     use_magic_device,
 };
 
-enum Target_Type {
-   Charcter,
-   Actor,
-   Map, 
-};
-
 enum Action_Component_Source{
     None,
     Melee,
@@ -97,12 +96,13 @@ enum Action_Component_Type {
     Divine,
 };
 
-struct Action_Component {
+struct Action_Components {
     Action_Component_Source source;
     vector<Action_Component_Stat> stats;
     Action_Component_Condition condition;
     Action_Component_Effect effect;
     Action_Component_Type action_type;
+    vector<Action_Valid_Target_Type> valid_targets;
 };
 
 enum Action_Type {
@@ -116,14 +116,11 @@ enum Action_Type {
 
 class Action {
     public:
-        Action(
-            Action_Type action_type, 
-            Action_Component action_component,
-        );
+        Action(Action_Type action_type, Action_Components action_components);
         ~Action();
 
     private:
-        Action_Type _action_typ;
-        vector<Action_Component> _components;
-        Target; 
+        Action_Type _action_type;
+        vector<Action_Components> _components;
+        vector<Target_Type> _allowed_targets;
 };
